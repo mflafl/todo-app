@@ -1,0 +1,42 @@
+{{#if isEditing}}
+    <div class="col-md-4">
+        {{partial 'item/edit'}}
+    </div>
+{{/if}}
+<div class="col-md-4">
+    {{#if revisionsData.length}}
+        <div class="pull-right dropdown">
+            <a title="History" href="#" class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                <span class="glyphicon glyphicon-hdd"></span>
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                {{#each revisionsData as |revision| }}
+                    <li role="presentation"><a title="Revert to this version"{{action 'revertToVersion' revision}} role="menuitem" tabindex="-1" href="#">{{ format-date revision.created }}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+    {{/if}}
+
+    {{#unless isEditing}}
+        <a title="Edit" {{action 'edit' this}} href="#"><span class="glyphicon glyphicon-edit"></span></a>
+        <a title="Remove" {{action 'remove' this}} href="#"><span class="glyphicon glyphicon-remove"></span></a>
+    {{/unless}}
+
+    <h1>{{model.title}}</h1>
+    <small class='muted'>({{format-date model.created}})</small>
+    <hr>
+    <div>
+        {{format-markdown model.body}}
+    </div>
+
+    {{#unless isEditing}}
+    <hr>
+    {{#if model.done}}
+        <p>Done: {{format-date model.doneAt}}</p>
+    {{/if}}
+    {{#if model.category}}
+        <p>Category: {{ model.category.title }}</p>
+    {{/if}}
+    {{/unless}}    
+</div>

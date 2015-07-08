@@ -1,3 +1,40 @@
-<h2 id="title">Welcome to Ember.js</h2>
-
-{{outlet}}
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            {{#link-to 'index' class='navbar-brand'}}
+                TodoList
+            {{/link-to}}
+            <ul class="nav navbar-nav">
+               <li>
+                    {{#link-to 'items.create'}}
+                        <span class="glyphicon glyphicon-plus"></span>
+                    {{/link-to}}
+               </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Category <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        {{#if categories }}
+                            {{#each categories as |category| }}
+                                {{#if category.items }}
+                                    <li><a href="#">{{ category.title }}</a></li>
+                                {{/if}}
+                            {{/each}}
+                        {{/if}}
+                        <li>
+                        {{#link-to 'categories.create'}}
+                            <span class="glyphicon glyphicon-plus"></span> Add
+                        {{/link-to}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+   </div>
+ </nav>
+ <div class="row">
+     <div class="col-md-4">{{partial 'items'}}</div>
+     {{ outlet }}
+ </div>
+ <div class="footer navbar-default navbar-fixed-bottom text-center">
+     <p>&copy; 2015</p>
+ </div>

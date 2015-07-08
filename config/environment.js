@@ -14,6 +14,8 @@ module.exports = function(environment) {
     },
 
     APP: {
+      apiBase: "http://localhost:8452",
+      apiNameSpace: "api/v1"
       // Here you can pass flags/options to your application instance
       // when it is created
     }

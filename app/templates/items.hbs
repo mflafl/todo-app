@@ -1,0 +1,20 @@
+    <div class="list-group">
+        <a class="list-group-item success disabled">
+            Items
+        </a>
+        {{#each items as |item| }}
+            {{#unless item.category}}
+                {{partial 'itemlistitem'}}
+            {{/unless}}
+        {{/each}}
+        {{#each categories as |cat| }}
+            {{#if cat.items }}
+                <a class="list-group-item success disabled">
+                    {{ cat.title }}
+                </a>
+                {{#each cat.items as |item| }}
+                    {{partial 'itemlistitem'}}
+                {{/each}}
+            {{/if}}
+        {{/each}}
+    </div>

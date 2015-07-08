@@ -1,0 +1,11 @@
+    {{#link-to 'item' item class='list-group-item' classBinding='item.done:list-group-item-success:not-done'}}
+        {{ item.title }}
+        <span class="badge">
+            {{ format-date item.created }}
+        </span>
+        {{#unless item.done}}
+            <span title="Mark done!" class="badge">
+                <span {{action 'makeDone' item}}class="glyphicon glyphicon-ok"></span>
+            </span>
+        {{/unless}}
+    {{/link-to}}
