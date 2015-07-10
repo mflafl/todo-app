@@ -1,4 +1,5 @@
-export default Ember.Route.extend({
+export
+default Ember.Route.extend({
     setupController: function(controller, model) {
 
         var config = this.container.lookupFactory('config:environment');
@@ -13,24 +14,12 @@ export default Ember.Route.extend({
             promise: $.get(config.APP.apiBase + '/' + config.APP.apiNameSpace + '/' + 'items/' + model.get('id') + '/revisions')
         });
         controller.set('revisionsData', revisions);
-        controller.set('categories', this.store.all('category'));
 
-        var tags = this.store.findAll('tag').toArray();
+        controller.set('categories', this.store.peekAll('category'));
+        controller.set('tags', this.store.peekAll('tag'));
 
-        /*$(document).ready(function() {
-                console.log($('#tagsInput'));
-                $('#tagsInput').tagsinput({
-                    itemValue: 'id',
-                    itemText: 'title',
-                    typeaheadjs: {
-                      name: 'tags',
-                      displayKey: 'title',
-                      source: function() {
-                        return ['tag1', 'tag2']
-                      }
-                    }
-                });
-            });*/
+
+        controller.set('test', 'testValue');
     },
     model: function(params) {
         return this.store.find('item', params.item_id);

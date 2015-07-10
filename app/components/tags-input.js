@@ -1,34 +1,40 @@
 export
 default Ember.Component.extend({
-    id: 'tagsInput',
-    tagName: 'input',
-    classNames: ['form-control', 'typeahead'],
+    tagName: 'select',
+    attributeBindings: ['multiple'],
+    multiple: 'multiple',
     didInsertElement: function() {
-        console.log(this);
-        this.$()
+        //!! get all items - $("select").val()
+        
+        
+        //console.log(this);
+        //.update(1);
+        var tagsObservable = this.attrs.testAttr;
 
-        return;
-        var data = ['test', 'test2'];
+        var data = [{
+                name: 'tag1'
+            }, {
+                name: 'tag2'
+            }
+        ];
 
         var bh = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tag_name'),
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            local: data
+            // `states` is an array of state names defined in "The Basics"
+            local: ["tag1", "tag2"]
         });
-        bh.initialize();
 
+        this.$().tagsinput({
+            typeaheadjs: {
+                hint: true,
+                highlight: true,
+                source: bh
+            }
+        });
 
-        this.$('#sire').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-        }, {
-            name: 'sires',
-            displayKey: Meteor.Cattle.getReferenceCattleDisplayKey(),
-            source: siresBh.ttAdapter()
-        }).bind("typeahead:selected", function(obj, datum, name) {
-            self.$('#sireLink').attr('href', '/cattle/' + datum.timestamp);
-            self.$('#sireTimestamp').attr('value', datum.timestamp);
+        this.$().on('itemAdded', function(event) {
+            // event.item: contains the item
         });
     }
 });
