@@ -10,11 +10,12 @@ Router.map(function() {
     path: '/item/:item_id'
   });
   this.resource('items', function() {
-    this.route('create')
+    this.route('create');
   });
   this.resource('categories', function() {
-    this.route('create')
+    this.route('create');
   });
 });
 
-export default Router;
+export
+default Router;
