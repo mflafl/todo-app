@@ -17,5 +17,8 @@
     created: DS.attr(),
     updated: DS.attr(),
     revisions: DS.attr(),
-    version: DS.attr()
+    version: DS.attr(),
+
+    // virtual for sending tags as plain array of text values
+    tagsPlain: DS.attr()
   });

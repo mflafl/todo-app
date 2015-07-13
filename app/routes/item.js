@@ -19,10 +19,7 @@ default Ember.Route.extend({
     controller.set('revisionsData', revisions);
 
     controller.set('categories', this.store.peekAll('category'));
-    controller.set('tags', this.store.peekAll('tag'));
-
-
-    controller.set('test', 'testValue');
+    controller.set('tags', this.store.peekAll('tag').mapBy('name'));
   },
   model: function(params) {
     return this.store.find('item', params.item_id);

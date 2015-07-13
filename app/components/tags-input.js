@@ -1,7 +1,6 @@
 import Ember from 'ember';
 /* global Bloodhound */
 
-
 export
 default Ember.Component.extend({
   tagName: 'select',
@@ -9,18 +8,13 @@ default Ember.Component.extend({
   multiple: 'multiple',
   didInsertElement: function() {
     var element = this.$();
-    var tagsObservable = this.attrs.testAttr;
-    var data = [{
-        name: 'tag1'
-      }, {
-        name: 'tag2'
-      }
-    ];
+    var tagsObservable = this.attrs.selectedTags,
+      tagsData = this.attrs.allTags;
 
     var bh = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.whitespace,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
-      local: ["tag1", "tag2"]
+      local: tagsData
     });
 
     this.$().tagsinput({
@@ -32,7 +26,6 @@ default Ember.Component.extend({
     });
 
     element.on('itemAdded', function(event) {
-      // event.item: contains the item
       tagsObservable.update(element.val());
     });
 
