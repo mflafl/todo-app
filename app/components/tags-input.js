@@ -10,19 +10,26 @@ default Ember.Component.extend({
     var element = this.$();
     var tagsObservable = this.attrs.selectedTags,
       tagsData = this.attrs.allTags;
+      
 
     var bh = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.whitespace,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
-      local: tagsData
+      local: tagsData.value
     });
 
-    this.$().tagsinput({
+    element.tagsinput({
       typeaheadjs: {
         hint: true,
         highlight: true,
         source: bh
       }
+    });
+    
+    console.log(tagsData)
+    
+    tagsObservable.value.forEach(function(tag) {
+      element.tagsinput('add', tag);
     });
 
     element.on('itemAdded', function(event) {
