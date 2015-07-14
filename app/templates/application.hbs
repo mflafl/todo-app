@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+{{items.lenght}}<nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             {{#link-to 'index' class='navbar-brand'}}
@@ -16,7 +16,9 @@
                         {{#if categories }}
                             {{#each categories as |category| }}
                                 {{#if category.items }}
-                                    <li><a href="#">{{ category.title }}</a></li>
+                                <li>
+                                    {{#link-to (query-params category=category.id)}}{{category.title}}{{/link-to}}
+                                </li>
                                 {{/if}}
                             {{/each}}
                         {{/if}}
