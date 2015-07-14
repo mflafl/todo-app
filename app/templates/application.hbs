@@ -6,9 +6,9 @@
             {{/link-to}}
             <ul class="nav navbar-nav">
                <li>
-                    {{#link-to 'items.create'}}
-                        <span class="glyphicon glyphicon-plus"></span>
-                    {{/link-to}}
+                  {{#link-to 'items.create'}}
+                      <span class="glyphicon glyphicon-plus"></span>
+                  {{/link-to}}
                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select notebook <span class="caret"></span></a>
@@ -29,6 +29,7 @@
                 </li>
             </ul>
         </div>
+        {{ tags-list tags=tags }}
    </div>
  </nav>
  <div class="row">

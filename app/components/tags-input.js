@@ -10,7 +10,7 @@ default Ember.Component.extend({
     var element = this.$();
     var tagsObservable = this.attrs.selectedTags,
       tagsData = this.attrs.allTags;
-      
+
 
     var bh = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -25,9 +25,7 @@ default Ember.Component.extend({
         source: bh
       }
     });
-    
-    console.log(tagsData)
-    
+
     tagsObservable.value.forEach(function(tag) {
       element.tagsinput('add', tag);
     });
