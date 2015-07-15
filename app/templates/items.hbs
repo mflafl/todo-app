@@ -1,20 +1,9 @@
 <div class="list-group">
     <a class="list-group-item success disabled">
-        Todo:
+      Todo:
     </a>
-    {{#each items as |item| }}
-        {{#unless item.category}}
-            {{partial 'itemlistitem'}}
-        {{/unless}}
-    {{/each}}
-    {{#each categories as |cat| }}
-        {{#if cat.items }}
-            <a class="list-group-item success disabled">
-                {{ cat.title }}
-            </a>
-            {{#each cat.items as |item| }}
-                {{partial 'itemlistitem'}}
-            {{/each}}
-        {{/if}}
+    {{#each items key="id" as |item| }}
+      {{key}}
+      {{partial 'itemlistitem'}}
     {{/each}}
 </div>

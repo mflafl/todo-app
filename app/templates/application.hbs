@@ -1,9 +1,7 @@
 {{items.lenght}}<nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            {{#link-to 'index' class='navbar-brand'}}
-                TodoList
-            {{/link-to}}
+            {{#link-to 'index' class='navbar-brand'}}TodoList{{/link-to}}
             <ul class="nav navbar-nav">
                <li>
                   {{#link-to 'items.create'}}
@@ -14,7 +12,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select notebook <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         {{#if categories }}
-                            {{#each categories as |category| }}
+                            {{#each categories key="id" as |category| }}
                                 {{#if category.items }}
                                 <li>
                                     {{#link-to (query-params category=category.id)}}{{category.title}}{{/link-to}}

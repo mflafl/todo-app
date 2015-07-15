@@ -2,7 +2,7 @@
 
   export
   default DS.Model.extend({
-    items: DS.hasMany('items'),
+    items: DS.hasMany('items', { async: true }),
     title: DS.attr(),
     //created: DS.attr()
   });

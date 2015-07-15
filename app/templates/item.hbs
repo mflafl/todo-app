@@ -11,7 +11,7 @@
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                {{#each revisionsData as |revision| }}
+                {{#each revisionsData key="id" as |revision| }}
                     <li role="presentation"><a title="Revert to this version"{{action 'revertToVersion' revision}} role="menuitem" tabindex="-1" href="#">{{ format-date revision.created }}</a></li>
                 {{/each}}
             </ul>
