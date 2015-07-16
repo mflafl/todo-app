@@ -18,7 +18,7 @@ default Ember.Controller.extend({
     } else {
       //return items.filterBy('name', 'Untitled22');
     }*/
-    console.log(this.get('model').items); 
+    console.log(this.get('model').items);
     return items.filterBy('done', false);
   }.property('model'),  
   tags: function() {
