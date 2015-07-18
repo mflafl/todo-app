@@ -8,7 +8,13 @@ default Ember.Controller.extend({
   tag: null,
   filteredItems: Ember.computed.filter('items', function(item) {
     var category = this.get('category');
-    //console.log(item.category.name);
+    console.log(category);
+    console.log(item.get('category').id)
+
+    if (category && category != item.get('category').id) {
+      return false;
+    }
+
     return true;
   }),
   items: function() {
