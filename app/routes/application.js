@@ -4,8 +4,8 @@ export
 default Ember.Route.extend({
   model: function() {
     var data = Ember.RSVP.hash({
-      items: this.store.findAll('item'),
       categories: this.store.findAll('category'),
+      items: this.store.findAll('item'),      
       tags: this.store.findAll('tag')
     });
     return data;

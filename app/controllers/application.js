@@ -6,21 +6,26 @@ default Ember.Controller.extend({
   search: null,
   category: null,
   tag: null,
-  filteredItems: Ember.computed.filter('items', function(item) {
-    var category = this.get('category');
-    console.log(category);
-    console.log(item.get('category').id)
+  filteredItems: function() {
+    var self = this;
 
-    if (category && category != item.get('category').id) {
-      return false;
-    }
+    var filterCategory = self.get('category');
 
-    return true;
-  }),
-  items: function() {
-    var items = this.get('model').items;
-    return items;
-  }.property('model'),
+    return self.get('model').items.filter(function(item, index, enumerable) {
+      if (filterCategory) {
+        if (item.get('category')) {
+          var itemCategory = item.get('category').get('id');
+          if (filterCategory != itemCategory) {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      }
+      return true;
+    });
+
+  }.property('model.items.@each', 'category'),
   tags: function() {
     return this.get('model').tags;
   }.property('model'),

@@ -2,7 +2,7 @@
     <a class="list-group-item success disabled">
       Todo:
     </a>
-    {{#each filteredItems key="id" as |item| }}
+    {{#each filteredItems as |item| }}
       {{key}}
       {{partial 'itemlistitem'}}
     {{/each}}

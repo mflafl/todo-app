@@ -8,7 +8,9 @@
     body: DS.attr('string', {
       defaultValue: ''
     }),
-    tags: DS.hasMany('tags', { async: true }),
+    tags: DS.hasMany('tags', {
+      async: true
+    }),
     category: DS.belongsTo('category', {
       async: false
     }),

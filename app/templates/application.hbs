@@ -12,7 +12,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select notebook <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         {{#if categories }}
-                            {{#each categories key="id" as |category| }}
+                            {{#each categories as |category| }}
                                 {{#if category.items }}
                                 <li>
                                     {{#link-to (query-params category=category.id)}}{{category.title}}{{/link-to}}

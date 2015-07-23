@@ -1,5 +1,5 @@
 <div class="navbar-text">
-  {{#each tags key="id" as |tag| }}
+  {{#each tags as |tag| }}
     {{#link-to (query-params tag=tag.id)}}{{tag.name}}{{/link-to}}
   {{/each}}
 </div>
