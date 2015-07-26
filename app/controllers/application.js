@@ -10,9 +10,15 @@ default Ember.Controller.extend({
     var self = this;
 
     var filterCategory = self.get('category');
+    var filterTag = self.get('tag');
 
-    return self.get('model').items.filter(function(item, index, enumerable) {
-      if (filterCategory) {
+    if (filterTag) {
+      var tag = this.store.peekRecord('tag', filterTag);
+      if (tag) {
+        return tag.get('items');
+      }
+    } else if (filterCategory) {
+      return self.get('model').items.filter(function(item, index, enumerable) {
         if (item.get('category')) {
           var itemCategory = item.get('category').get('id');
           if (filterCategory != itemCategory) {
@@ -21,11 +27,12 @@ default Ember.Controller.extend({
         } else {
           return false;
         }
-      }
-      return true;
-    });
-
-  }.property('model.items.@each', 'category'),
+        return true;
+      });
+    } else {
+      return self.get('model').items
+    }
+  }.property('model.items.@each', 'tag', 'category'),
   tags: function() {
     return this.get('model').tags;
   }.property('model'),

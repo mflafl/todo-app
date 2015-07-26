@@ -6,11 +6,11 @@
 <div class="col-md-4">
     {{#if revisionsData.length}}
         <div class="pull-right dropdown">
-            <a title="History" href="#" class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            <a title="History" href="#" class="dropdown-toggle" type="button" id="revisionsMenu" data-toggle="dropdown" aria-expanded="true">
                 <span class="glyphicon glyphicon-hdd"></span>
                 <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="revisionsMenu">
                 {{#each revisionsData as |revision| }}
                     <li role="presentation"><a title="Revert to this version"{{action 'revertToVersion' revision}} role="menuitem" tabindex="-1" href="#">{{ format-date revision.created }}</a></li>
                 {{/each}}
@@ -38,5 +38,10 @@
     {{#if model.category}}
         <p>Category: {{ model.category.title }}</p>
     {{/if}}
+    {{#if model.tags}}
+      <p>
+        Tags: {{ tags-list tags=model.tags }}
+      </p>
+    {{/if}}    
     {{/unless}}
 </div>
