@@ -6,6 +6,20 @@ default Ember.Controller.extend({
   search: null,
   category: null,
   tag: null,
+
+  categoryName: function() {
+    var filterCategory = this.get('category');
+
+    if (filterCategory) {
+      var category = this.store.peekRecord('category', filterCategory);
+      if (category) {
+        return category.get('title');
+      }
+    }
+
+    return false;
+  }.property('category', 'model.items.@each'),
+
   filteredItems: function() {
     var self = this;
 

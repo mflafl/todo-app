@@ -1,6 +1,10 @@
 <div class="list-group">
-    <a class="list-group-item success disabled">
-      Todo:
+    <a class="list-group-item list-group-item-info">
+    {{# if categoryName}}      
+      {{ categoryName }} items
+    {{ else }}
+      Items    
+    {{/if}}
     </a>
     {{#each filteredItems as |item| }}
       {{partial 'itemlistitem'}}
