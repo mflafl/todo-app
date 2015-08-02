@@ -2,11 +2,12 @@ import Ember from 'ember';
 
 export
 default Ember.Controller.extend({
+  needs: ['item-sort'],
   queryParams: ['category', 'tag', 'search'],
   search: null,
   category: null,
   tag: null,
-
+  
   categoryName: function() {
     var filterCategory = this.get('category');
 
@@ -20,7 +21,8 @@ default Ember.Controller.extend({
     return false;
   }.property('category', 'model.items.@each'),
 
-  filteredItems: function() {
+
+  items: function() {
     var self = this;
 
     var filterCategory = self.get('category');
@@ -32,7 +34,7 @@ default Ember.Controller.extend({
         return tag.get('items');
       }
     } else if (filterCategory) {
-      return self.get('model').items.filter(function(item, index, enumerable) {
+      return self.get('sortedItems').filter(function(item, index, enumerable) {
         if (item.get('category')) {
           var itemCategory = item.get('category').get('id');
           if (filterCategory != itemCategory) {

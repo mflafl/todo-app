@@ -6,7 +6,7 @@
       Items    
     {{/if}}
     </a>
-    {{#each filteredItems as |item| }}
-      {{partial 'itemlistitem'}}
+    {{#each items as |item| }}
+      {{partial 'items/list-item'}}
     {{/each}}
 </div>

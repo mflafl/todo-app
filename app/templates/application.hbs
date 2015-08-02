@@ -1,37 +1,37 @@
 {{items.lenght}}<nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header">
-            {{#link-to 'index' (query-params tag=null category=null) class='navbar-brand'}}TodoList{{/link-to}}
-            <ul class="nav navbar-nav">
-               <li>
-                  {{#link-to 'items.create'}}
-                      <span class="glyphicon glyphicon-plus"></span>
+      <div class="navbar-header">
+        {{#link-to 'index' (query-params tag=null category=null) class='navbar-brand'}}TodoList{{/link-to}}
+        <ul class="nav navbar-nav">
+          <li>
+            {{#link-to 'items.create'}}
+                <span class="glyphicon glyphicon-plus"></span>
+            {{/link-to}}
+          </li>
+           <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select notebook <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                {{#if categories }}
+                  {{#each categories as |category| }}                                
+                    <li>
+                      {{#link-to (query-params category=category.id)}}{{category.title}}{{/link-to}}
+                    </li>                          
+                  {{/each}}
+                {{/if}}
+                  <li>
+                  {{#link-to 'categories.create'}}
+                      <span class="glyphicon glyphicon-plus"></span> Add
                   {{/link-to}}
-               </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select notebook <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        {{#if categories }}
-                            {{#each categories as |category| }}                                
-                                <li>
-                                    {{#link-to (query-params category=category.id)}}{{category.title}}{{/link-to}}
-                                </li>                          
-                            {{/each}}
-                        {{/if}}
-                        <li>
-                        {{#link-to 'categories.create'}}
-                            <span class="glyphicon glyphicon-plus"></span> Add
-                        {{/link-to}}
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        {{ tags-list tags=tags }}
+                  </li>
+              </ul>
+            </li>
+          </ul>
+      </div>
+      {{ tags-list tags=tags }}
    </div>
  </nav>
  <div class="row">
-     <div class="col-md-4">{{partial 'items'}}</div>
+     <div class="col-md-4">{{partial 'items/list'}}</div>
      {{ outlet }}
  </div>
  <div class="footer navbar-default navbar-fixed-bottom text-center">
