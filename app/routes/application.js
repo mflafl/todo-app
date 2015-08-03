@@ -13,7 +13,6 @@ default Ember.Route.extend({
 
   setupController: function(controller, model) {
     var itemsSortMixin = controller.get('controllers.item-sort');
-    controller.set('sortedItems', itemsSortMixin);    
     controller.set('model', model);
     itemsSortMixin.set('model', model.items)
   },
